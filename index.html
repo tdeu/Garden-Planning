@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="./favicon.png"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link href="0.8ab38508.css" rel="stylesheet">
+    <title>garden maker</title>
+</head>
+<body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+        <div id="myDiagramDiv"></div>
+        <div class="absolute right-0 top-0 z-10 m-2 max-w-md rounded-md bg-slate-100 p-2 text-center text-sm">
+            <div class="block">
+                <div id="limitTerrain" style="cursor: pointer; padding: 5px; border: 1px solid #000;">Limite terrain:</div>
+                <br>
+                <p>Arbres:</p>
+                <div>
+                    <button id="A1" style="background-color: #f0f7f1" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10 w-10 h-10 rounded-full border-slate-700 px-2 text-slate-700">A1</button>
+                    <button id="A2" style="background-color: #dcd7d7" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10 w-10 h-10 rounded-full border-slate-700 px-2 text-slate-700">A2</button>
+                    <button id="A3" style="background-color: #f9c47b" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10 w-10 h-10 rounded-full border-slate-700 px-2 text-slate-700">A3</button>
+                    <button id="A4" style="background-color: #f1ae7a" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10 w-10 h-10 rounded-full border-slate-700 px-2 text-slate-700">A4</button>
+                </div>
+                <div>
+                    <button id="A5" style="background-color: #e5b4c8" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10 w-10 h-10 rounded-full border-slate-700 px-2 text-slate-700">A5</button>
+                    <button id="A6" style="background-color: #f388b2" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10 w-10 h-10 rounded-full border-slate-700 px-2 text-slate-700">A6</button>
+                    <button id="A7" style="background-color: #d82376" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10 w-10 h-10 rounded-full border-slate-700 px-2 text-slate-700">A7</button>
+                </div>
+                <br>
+                <p>Autres éléments:</p>
+                <button id="paves" style="background-color: yellow; border-radius: 0; height: 20px; padding: 0 5px; font-size: 10px;" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10 border-slate-700 text-slate-700">Pavés</button>
+                <button id="citerne" style="background-color: white" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10  h-10 rounded-full border-slate-700 px-2 text-slate-700">Citerne</button>
+                <button id="lagunage" style="background-color: white" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10  h-10 rounded-full border-slate-700 px-2 text-slate-700">Lagunage</button>
+                <br>
+                <br>
+                <p>Buissons de Haie</p>
+                <button id="buisson1" style="background-color: rgb(192 132 252)" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10  h-10 rounded-full border-slate-700 px-2 text-slate-700">1</button>
+                <button id="buisson2" style="background-color: rgb(243 232 255)" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10  h-10 rounded-full border-slate-700 px-2 text-slate-700">2</button>
+                <button id="buisson3" style="background-color: rgb(233 213 255)" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10  h-10 rounded-full border-slate-700 px-2 text-slate-700">3</button>
+                <button id="buisson4" style="background-color: rgb(255 255 255)" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10  h-10 rounded-full border-slate-700 px-2 text-slate-700">4</button>
+            </div>
+        </div>
+        <div class="absolute left-20 top-0 z-10 hidden bg-white">
+            <p>single click to select and drag</p>
+            <p>double click to create</p>
+            <p>click-wait-drag for selection box</p>
+            <p>press ? for more help</p>
+        </div>
+        <div class="modal-background" style="background-image: url('aerial.JPG');"></div>
+
+        <div id="front-window" class="modal" role="dialog" aria-modal="true">
+            <div class="max-w-3xl">
+                <h1 class="text-center text-3xl" data-svelte-h="svelte-ayurn3">Huombois - Rénovation et plans de jardin </h1>
+                <div class="mx-4 mb-4">
+<br>
+                    <h2 class="text-2xl" data-svelte-h="svelte-ajkpbv">Mode d'emploi</h2>
+                    <ul class="ml-4 mb-2 list-[square]" data-svelte-h="svelte-1lfslgh">
+                        <li>Choisir un élément dans la liste.</li>
+                        <li>Double click pour une nouvelle plante. Simple clique pour ajouter un objet</li>
+                        <li>Click-hold-drag to create a selection box.</li>
+                        <li>All keyboard shortcuts you might expect work: CTRL+C and +V to copy and paste. CTRL and
+        drag to copy the selection.</li>
+                        <li>Undo and redo work also</li>
+                    </ul>
+                    <h2 class="text-2xl" data-svelte-h="svelte-igte8m">Explications</h2>
+                    <p data-svelte-h="svelte-195dwtj">
+                        En 2021, j'ai acquis une ancienne maison en ruine nichée au cœur d'une forêt. À l'origine, elle faisait partie d'une ferme qui s'étendait vers l'est. Seule la partie résidentielle subsiste aujourd'hui, la grange ayant été démolie, ne laissant que le logis. 
+                    </p>
+                    <p data-svelte-h="svelte-1qhcre5">Les fondations de l'ancienne grange ont été ensevelies sous un amalgame de pierres jaunes, de débris et de terre. Au fil du temps, ces éléments se sont accumulés, formant une couche épaisse d'environ cinquante centimètres par-dessus les pavés situés à l'avant de l'ancien bâtiment. Aujourd'hui, cette strate témoigne de l'histoire enfouie de la propriété, marquant le passage des saisons et l'évolution du lieu.</p>
+                    <p data-svelte-h="svelte-phndnc">Le but de cette carte interactive est:</p>
+                    <ul class="ml-4 mb-2 list-[square]" data-svelte-h="svelte-lwih1a">
+                        <li>Faire le suivi du déblayement. Les pavés encore présents seront conservés</li>
+                        <li>Visualiser les futurs emmenagements du jardins qui sera pensé comme un mélange d'arbres, fleurs et de parterres et murs en pavés</li>
+                    </ul>
+                    <p data-svelte-h="svelte-evozpy">Les photos ci-dessus montrent respectivement une vue avant depuis le chemin et une vue depuis la limite arrière du terrain:</p>
+                    <div class="my-4 flex flex-col items-center" data-svelte-h="svelte-d8zei3">
+                        <img alt="house" class="w-full md:max-w-xl" src="overhead2.jpeg">
+                        <p class="text-sm italic">
+                            Vue avant depuis le chemin prise depuis le côté sud-est
+                        </p>
+                        <img alt="house" class="w-full md:max-w-xl" src="overhead1.jpeg">
+                        <p class="text-sm italic">
+                            Vue arrière prise depuis la limite du terrain côté nord
+                        </p>
+                    </div>
+                    <button onclick="hideFrontWindow()" class="bg-rose-100 p-2 m-2 rounded-md hover:drop-shadow-lg" data-svelte-h="svelte-g71vv0">Voir Plan actuel</button>
+                </div>
+        </div>
+
+
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
