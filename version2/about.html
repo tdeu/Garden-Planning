@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="static/images/favicon.png"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link href="static/css/0.8ab38508.css" rel="stylesheet">
+    <title>garden maker</title>
+    <style>
+        /* Your existing CSS styles here */
+    </style>
+</head>
+<body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+        <!-- Your existing HTML content here -->
+        <!-- This is where your existing content goes -->
+
+        <!-- Add the hoverable modal background -->
+        <!-- This div creates the background image for the modal -->
+        <div class="modal-background" style="background-image: url('static/images/aerial.JPG');"></div>
+
+        <!-- Pop-up container -->
+        <!-- This div creates the container for the pop-up content -->
+        <div id="popup-container" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px;">
+            <!-- Pop-up content goes here -->
+            <!-- This button allows users to close the pop-up -->
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- Your existing script inclusion -->
+    <!-- This script includes your existing JavaScript file -->
+    <script src="static/js/script.js"></script>
+
+    <!-- JavaScript for pop-up functionality -->
+    <!-- This script provides the functionality for the pop-up -->
+    <script>
+        const modalBackground = document.querySelector('.modal-background');
+        const popupContainer = document.getElementById('popup-container');
+
+        modalBackground.addEventListener('click', function(event) {
+            const clickX = event.clientX;
+            const clickY = event.clientY;
+            const modalRect = modalBackground.getBoundingClientRect();
+
+            // Define the region where clicking should trigger the pop-up
+            // This defines the area where the pop-up should appear
+            const triggerRegion = {
+                left: modalRect.width * 0.4,
+                right: modalRect.width * 0.6,
+                top: modalRect.height * 0.4,
+                bottom: modalRect.height * 0.6
+            };
+
+            if (clickX >= triggerRegion.left && clickX <= triggerRegion.right && clickY >= triggerRegion.top && clickY <= triggerRegion.bottom) {
+                // Show the pop-up at the center of the screen
+                // This displays the pop-up if the click is within the trigger region
+                popupContainer.style.display = 'block';
+            }
+        });
+
+        function closePopup() {
+            // This function hides the pop-up when the close button is clicked
+            popupContainer.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
