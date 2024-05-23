@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <link rel="icon" href="./favicon.png"/>
+    <link rel="icon" href="static/images/favicon.png"/>
     <meta name="viewport" content="width=device-width"/>
-    <link href="0.8ab38508.css" rel="stylesheet">
+    <link href="static/css/0.8ab38508.css" rel="stylesheet">
     <title>garden maker</title>
+
 </head>
 <body data-sveltekit-preload-data="hover">
     <div style="display: contents">
@@ -28,7 +29,7 @@
                 </div>
                 <br>
                 <p>Autres éléments:</p>
-                <button id="paves" style="background-color: yellow; border-radius: 0; height: 20px; padding: 0 5px; font-size: 10px;" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10 border-slate-700 text-slate-700">Pavés</button>
+                <button id="paves" style="background-color: yellow; border-radius: 0; height: 20px; padding: 0 5px; font-size: 10px;" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10 border-slate-700 text-slate-700">Mur pierre</button>
                 <button id="citerne" style="background-color: white" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10  h-10 rounded-full border-slate-700 px-2 text-slate-700">Citerne</button>
                 <button id="lagunage" style="background-color: white" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10  h-10 rounded-full border-slate-700 px-2 text-slate-700">Lagunage</button>
                 <br>
@@ -40,13 +41,47 @@
                 <button id="buisson4" style="background-color: rgb(255 255 255)" class="border-2 hover:border-opacity-100 hover:drop-shadow-md border-opacity-10  h-10 rounded-full border-slate-700 px-2 text-slate-700">4</button>
             </div>
         </div>
-        <div class="absolute left-20 top-0 z-10 hidden bg-white">
-            <p>single click to select and drag</p>
-            <p>double click to create</p>
-            <p>click-wait-drag for selection box</p>
-            <p>press ? for more help</p>
+        <div class="modal-background" style="background-image: url('static/images/aerial.JPG');"></div>
+
+        <div id="popup-container" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #e5b4c8; padding: 20px;">
+            <img src="static/images/arbre1.jpeg" alt="Arbre 1">
+            <p>Cerisier sauvage</p>
+            <button class="bouton" onclick="closePopup()">Fermer</button>
         </div>
-        <div class="modal-background" style="background-image: url('aerial.JPG');"></div>
+
+        <div id="popup-container2" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); transform-origin: center; background-color: #e5b4c8; padding: 10px;">
+            <img id="arbredeux" src="static/images/arbre2.jpeg" alt="Arbre 2">
+            <p>Pommier Sauvage - Malus Sylvestris</p>
+            <button class="bouton2" onclick="closePopup2()">Fermer</button>
+        </div>
+
+        <div id="popup-container3"style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); transform-origin: center; background-color: #e5b4c8; padding: 10px;">
+            <img src="static/images/arbre3.jpeg" alt="arbre3">
+            <P>Aubépine monogyne</P>
+            <button class="bouton" onclick="closePopup3()">Fermer</button>        
+        </div>>
+
+        <div id="pavement"style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); transform-origin: center; background-color: #e5b4c8; padding: 10px;">
+            <img src="static/images/pavement.jpeg" alt="pavement">
+            <p>Vieux pavés - work in progress</p>
+            <button class="boutonpavé" onclick="closePave()">Fermer</button>
+        </div>
+
+        <div id="popup-container4" style="display: none; position: fixed; top: 40%; left: 40%; transform: translate(-50%, -50%); background-color: #e5b4c8; padding: 30px;">
+            <img src="static/images/arbre4.jpeg" alt="arbre4">
+            <P>Cerisier</P>
+            <button class="bouton" onclick="closePopup4()">Fermer</button>        
+        </div>>
+
+        <div id="popup-container5" style="display: none; position: fixed; top: 40%; left: 40%; transform: translate(-50%, -50%); background-color: #e5b4c8; padding: 30px;">
+            <img src="static/images/arbre5.jpeg" alt="arbre5">
+            <P>Noyer Noir</P>
+            <button class="bouton" onclick="closePopup5()">Fermer</button>        
+        </div>>
+
+        </div>
+        
+        <img id="hoverImage" src="static/images/arbre1.jpeg" class="hover-image" style="display:none; position:absolute;"/>
 
         <div id="front-window" class="modal" role="dialog" aria-modal="true">
             <div class="max-w-3xl">
@@ -74,14 +109,20 @@
                     </ul>
                     <p data-svelte-h="svelte-evozpy">Les photos ci-dessus montrent respectivement une vue avant depuis le chemin et une vue depuis la limite arrière du terrain:</p>
                     <div class="my-4 flex flex-col items-center" data-svelte-h="svelte-d8zei3">
-                        <img alt="house" class="w-full md:max-w-xl" src="overhead2.jpeg">
+                        <img alt="house" class="w-full md:max-w-xl" src="static/images/overhead2.jpeg">
                         <p class="text-sm italic">
                             Vue avant depuis le chemin prise depuis le côté sud-est
                         </p>
-                        <img alt="house" class="w-full md:max-w-xl" src="overhead1.jpeg">
+                        <img alt="house" class="w-full md:max-w-xl" src="static/images/overhead1.jpeg">
                         <p class="text-sm italic">
                             Vue arrière prise depuis la limite du terrain côté nord
                         </p>
+                    </p>
+                    <img alt="house" class="w-full md:max-w-xl" src="static/images/overhead3.jpeg">
+                    <p class="text-sm italic">
+                        Vue avant prise depuis l'autre côté du chemin
+                    </p>
+                        
                     </div>
                     <button onclick="hideFrontWindow()" class="bg-rose-100 p-2 m-2 rounded-md hover:drop-shadow-lg" data-svelte-h="svelte-g71vv0">Voir Plan actuel</button>
                 </div>
@@ -90,6 +131,7 @@
 
 
     </div>
-    <script src="script.js"></script>
+    <script src="static/js/script.js"></script>
+
 </body>
 </html>
